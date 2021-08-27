@@ -2,6 +2,7 @@
 
 /**
  * @file
+ * RSVP Module hooks.
  */
 
 use Drupal\Core\Form\FormStateInterface;
@@ -9,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_form_alter().
  *
- * Alter the node add/edit form to include admin settings for displaying RSVPBlock with content.
+ * Alter the node add/edit form to include admin settings for display RSVPBlock with content.
  */
 function rsvplist_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $node = $form_state->getFormObject->getEntity();
@@ -32,7 +33,8 @@ function rsvplist_form_node_form_alter(&$form, FormStateInterface $form_state, $
       '#default_value' => $enabler->isEnabled($node),
     ];
     foreach (array_keys($form['actions']) as $action) {
-      if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+      if ($action != 'preview' && isset($form['actions'][$action]['#type'])
+      && $form['actions'][$action]['#type'] === 'submit') {
         $form['actions'][$action]['#submit'][] = 'rsvplist_form_node_form_submit';
       }
     }

@@ -6,7 +6,7 @@
  */
 
 /**
- *
+ * Function rsvplist_schema return rsvplist array.
  */
 function rsvplist_schema() {
   $schema['rsvplist'] = [
